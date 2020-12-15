@@ -11,7 +11,7 @@ start_flag =False
 e_stop_flag =False
 app = Flask(__name__)
 ask = Ask(app, "/")
-NEWCODE="rostopic pub /test_flag std_msgs/Bool false --once"
+#NEWCODE="rostopic pub /test_flag std_msgs/Bool false --once"
 #waypoint="roslaunch waypoint_maker waypoint_loader.launch multi_lane_csv:=/home/usrg/waypoint/ki_to_presi_si4.csv"
 # ROS node, publisher, and parameter.
 # The node is started in a separate thread to avoid conflicts with Flask.
