@@ -36,16 +36,42 @@ def launch():
    
 @ask.intent('TestIntent', default={'goal': 'Main building'})
 def test_intent_function(goal):
-    start_flag=True
-    start_pub.publish(start_flag)
+    
     navsat=NavSatFix()
-    navsat.latitude=3
-    navsat.longitude=3
-    nav_pub.publish(navsat)
+    if goal =="Main building" or goal=="Maine building":
+        start_flag=True
+        start_pub.publish(start_flag)
+        navsat.latitude=36.370395
+        navsat.longitude=127.361461
+        nav_pub.publish(navsat)
+        print(goal)
+        return statement('Hello Everyone. Thank you for riding!. \
+        U s r g Tram is leaving soon. Fasten your seat belt please!.\
+        It will take 6minutes to go to : {0}.'.format(goal))
+    if goal =="library":
+        start_flag=True
+        start_pub.publish(start_flag)
+        navsat.latitude=36.369505
+        navsat.longitude=127.362252
+        nav_pub.publish(navsat)
+        print(goal)
+        return statement('Hello Everyone. Thank you for riding!. \
+        U s r g Tram is leaving soon. Fasten your seat belt please!.\
+        It will take 4minutes to go to : {0}.'.format(goal))
+    
+    if goal =="K. I building" or goal =="K. caerphilly building" or goal =="caerphilly":
+        start_flag=True
+        start_pub.publish(start_flag)
+        navsat.latitude=36.368635
+        navsat.longitude=127.363642
+        nav_pub.publish(navsat)
+        print(goal)
+        return statement('Hello Everyone. Thank you for riding!. \
+        U s r g Tram is leaving soon. Fasten your seat belt please!.\
+        It will take 6minutes to go to : {0}.'.format(goal))
+    print(goal)
     #os.system(waypoint) 
-    return statement('Hello Everyone. Thank you for riding!. \
-    U s r g Tram is leaving soon. Fasten your seat belt please!.\
-    It will take 6minutes to go to : {0}.'.format(goal))
+   
 
 @ask.intent('EmergencyIntent')
 def Emergency_intent_function():
