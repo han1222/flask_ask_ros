@@ -47,7 +47,8 @@ def test_intent_function(goal):
         print(goal)
         return statement('Hello Everyone. Thank you for riding!. \
         U s r g Tram is leaving soon. Fasten your seat belt please!.\
-        It will take 6minutes to go to : {0}.'.format(goal))
+        It will take 6minutes to go to : {0}.'.format("Main building"))
+        
     if goal =="library":
         start_flag=True
         start_pub.publish(start_flag)
@@ -57,7 +58,7 @@ def test_intent_function(goal):
         print(goal)
         return statement('Hello Everyone. Thank you for riding!. \
         U s r g Tram is leaving soon. Fasten your seat belt please!.\
-        It will take 4minutes to go to : {0}.'.format(goal))
+        It will take 4minutes to go to : {0}.'.format("library"))
     
     if goal =="K. I building" or goal =="K. caerphilly building" or goal =="caerphilly":
         start_flag=True
@@ -68,7 +69,7 @@ def test_intent_function(goal):
         print(goal)
         return statement('Hello Everyone. Thank you for riding!. \
         U s r g Tram is leaving soon. Fasten your seat belt please!.\
-        It will take 6minutes to go to : {0}.'.format(goal))
+        It will take 6minutes to go to : {0}.'.format("K. I building"))
     print(goal)
     #os.system(waypoint) 
    
