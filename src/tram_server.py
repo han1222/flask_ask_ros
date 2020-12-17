@@ -7,6 +7,7 @@ from waitress import serve
 from flask import Flask
 from flask_ask import Ask, question, statement
 from std_msgs.msg import String,Bool
+from sensor_msgs.msg import NavSatFix
 start_flag =False
 e_stop_flag =False
 app = Flask(__name__)
@@ -21,6 +22,7 @@ ask = Ask(app, "/")
 threading.Thread(target=lambda: rospy.init_node('test_node', disable_signals=True)).start()
 start_pub = rospy.Publisher('start_pub', Bool, queue_size=1)
 e_stop_pub = rospy.Publisher('e_stop_pub', Bool, queue_size=1)
+nav_pub = rospy.Publisher('nav_pub', NavSatFix, queue_size=1)
 NGROK = rospy.get_param('/ngrok', None)
 
 def test_cb(msg):
@@ -34,10 +36,12 @@ def launch():
    
 @ask.intent('TestIntent', default={'goal': 'Main building'})
 def test_intent_function(goal):
-    
-
     start_flag=True
     start_pub.publish(start_flag)
+    navsat=NavSatFix()
+    navsat.latitude=3
+    navsat.longitude=3
+    nav_pub.publish(navsat)
     #os.system(waypoint) 
     return statement('Hello Everyone. Thank you for riding!. \
     U s r g Tram is leaving soon. Fasten your seat belt please!.\

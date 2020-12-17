@@ -7,6 +7,7 @@ from waitress import serve
 from flask import Flask
 from flask_ask import Ask, question, statement
 from std_msgs.msg import String,Bool
+ 
 start_flag =False
 e_stop_flag =False
 app = Flask(__name__)
