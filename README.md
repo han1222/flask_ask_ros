@@ -58,15 +58,9 @@ In this package we provide a simple Alexa skill that parses a single slot (word/
 
 ## Usage
 
-### Endpoint configuration
-
-In order for the Alexa requests to reach the local skill server, the local network must be configured to tunnel HTTPS traffic to a specific port on the local machine.
-
-We have tested two ways to accomplish this:
 
 * Using ngrok as a tunnel
 
-* Static IP/Dynamic DNS + self-signed SSL certificate
 
 ### ngrok tunnel configuration
 
@@ -107,3 +101,5 @@ Run the skill server to test your skill.
 
 This app was not created or endorsed by Amazon.
 # flask_ask_ros
+
+## reference https://github.com/3SpheresRoboticsProject/flask_ask_ros
