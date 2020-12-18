@@ -20,9 +20,9 @@ ask = Ask(app, "/")
 # in the main thread.
 
 threading.Thread(target=lambda: rospy.init_node('test_node', disable_signals=True)).start()
-start_pub = rospy.Publisher('start_pub', Bool, queue_size=1)
-e_stop_pub = rospy.Publisher('e_stop_pub', Bool, queue_size=1)
-nav_pub = rospy.Publisher('nav_pub', NavSatFix, queue_size=1)
+start_pub = rospy.Publisher('/Bool/start_pub', Bool, queue_size=1)
+e_stop_pub = rospy.Publisher('/Bool/e_stop_pub', Bool, queue_size=1)
+nav_pub = rospy.Publisher('/Goal/latlon', NavSatFix, queue_size=1)
 NGROK = rospy.get_param('/ngrok', None)
 
 def test_cb(msg):
@@ -49,7 +49,7 @@ def test_intent_function(goal):
         U s r g Tram is leaving soon. Fasten your seat belt please!.\
         It will take 6minutes to go to : {0}.'.format("Main building"))
         
-    if goal =="library":
+    if goal =="library" or goal=="raebareli":
         start_flag=True
         start_pub.publish(start_flag)
         navsat.latitude=36.369505
@@ -59,8 +59,20 @@ def test_intent_function(goal):
         return statement('Hello Everyone. Thank you for riding!. \
         U s r g Tram is leaving soon. Fasten your seat belt please!.\
         It will take 4minutes to go to : {0}.'.format("library"))
+
+         
+    if goal =="subway":
+        start_flag=True
+        start_pub.publish(start_flag)
+        navsat.latitude=36.371122
+        navsat.longitude=127.362080
+        nav_pub.publish(navsat)
+        print(goal)
+        return statement('Hello Everyone. Thank you for riding!. \
+        U s r g Tram is leaving soon. Fasten your seat belt please!.\
+        It will take 4minutes to go to : {0}.'.format("subway"))
     
-    if goal =="K. I building" or goal =="K. caerphilly building" or goal =="caerphilly":
+    if goal =="K. I building" or goal =="K. caerphilly building" or goal =="caerphilly" or goal == "KI building":
         start_flag=True
         start_pub.publish(start_flag)
         navsat.latitude=36.368635
