@@ -25,9 +25,6 @@ e_stop_pub = rospy.Publisher('/Bool/e_stop_pub', Bool, queue_size=1)
 nav_pub = rospy.Publisher('/Goal/latlon', NavSatFix, queue_size=1)
 NGROK = rospy.get_param('/ngrok', None)
 
-def test_cb(msg):
-
-    print("hi")
 
 @ask.launch
 def launch():
@@ -38,22 +35,22 @@ def launch():
 def test_intent_function(goal):
     
     navsat=NavSatFix()
-    if goal =="Main building" or goal=="Maine building":
+    if goal =="Main building" or goal=="Maine building" or goal=="Maine" or goal =="main building":
         start_flag=True
         start_pub.publish(start_flag)
-        navsat.latitude=36.370395
-        navsat.longitude=127.361461
+        navsat.latitude=36.3708332
+        navsat.longitude=127.3615032
         nav_pub.publish(navsat)
         print(goal)
         return statement('Hello Everyone. Thank you for riding!. \
         U s r g Tram is leaving soon. Fasten your seat belt please!.\
         It will take 6minutes to go to : {0}.'.format("Main building"))
         
-    if goal =="library" or goal=="raebareli":
+    if goal =="library" or goal=="raebareli" or goal=="rewari" or goal=="rajouri":
         start_flag=True
         start_pub.publish(start_flag)
-        navsat.latitude=36.369505
-        navsat.longitude=127.362252
+        navsat.latitude= 36.3694411
+        navsat.longitude=127.3621108
         nav_pub.publish(navsat)
         print(goal)
         return statement('Hello Everyone. Thank you for riding!. \
@@ -72,11 +69,11 @@ def test_intent_function(goal):
         U s r g Tram is leaving soon. Fasten your seat belt please!.\
         It will take 4minutes to go to : {0}.'.format("subway"))
     
-    if goal =="K. I building" or goal =="K. caerphilly building" or goal =="caerphilly" or goal == "KI building":
+    if goal =="K. I building" or goal =="K. caerphilly building" or goal =="caerphilly" or goal == "KI building" or goal =="Thai binh":
         start_flag=True
         start_pub.publish(start_flag)
-        navsat.latitude=36.368635
-        navsat.longitude=127.363642
+        navsat.latitude=36.3685642
+        navsat.longitude=127.3636356
         nav_pub.publish(navsat)
         print(goal)
         return statement('Hello Everyone. Thank you for riding!. \
@@ -109,13 +106,5 @@ if __name__ == '__main__':
 	#serve(app, host='0.0.0.0', port=5002)
 	#serve(app, host='127.0.0.1', port=8080)
 	serve(app, host='127.0.0.1', port=5050)
-    else:
-        print 'Manual tunneling mode'
-        dirpath = os.path.dirname(__file__)
-        cert_file = os.path.join(dirpath, '../config/ssl_keys/certificate.pem')
-        pkey_file = os.path.join(dirpath, '../config/ssl_keys/private-key.pem')
-        app.run(host=os.environ['ROS_IP'], port=5000,
-                ssl_context=(cert_file, pkey_file))
-    rospy.Subscriber("/test_flag",Bool,test_cb)
-    rospy.spin()
+    #rospy.spin()
     

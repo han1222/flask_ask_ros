@@ -9,7 +9,7 @@
 !.vscode/c_cpp_properties.json
 !.vscode/settings.json
 *.code-workspace
-
+*.vscode
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
